@@ -93,6 +93,7 @@ ssize_t mod9_write(struct file *pfile, const char __user *buffer, size_t length,
 		}
 		printk(KERN_INFO "Encrypted message:");
 		printk(KERN_INFO "(%s)\n", enc_message);
+		enc_message[0] = '\0';
 	}
 	else
 	{
@@ -104,7 +105,7 @@ ssize_t mod9_write(struct file *pfile, const char __user *buffer, size_t length,
 			if (flag == 1)
 				a_inv = i;
 		}
-		for (i= 0; i < 26; i++)
+		for (i= 0; i < length; i++)
 		{
 			if(message[i] >= 'A' && message[i] <= 'Z'){
 				if (message[i] != ' ')
@@ -127,6 +128,7 @@ ssize_t mod9_write(struct file *pfile, const char __user *buffer, size_t length,
 		}
 		printk(KERN_INFO "Decrypted message:");
 		printk(KERN_INFO "(%s)\n", dec_message);
+		dec_message[0] = '\0';
 	}
 	
 	return length;
