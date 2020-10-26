@@ -17,7 +17,7 @@ int8_t read_buffer[1024];
 
 int main(int argc, char **argv){
 	int fdesc;
-	char c;
+	int c;
 	
 	fdesc = open("/dev/my_device",O_RDWR);
 	if(fdesc < 0){
@@ -37,14 +37,14 @@ int main(int argc, char **argv){
     int temp;
 	while(1){
 		printf("Choose:\n");
-		printf("a. Write\n");
-		printf("b. Read\n");
-		printf("c. Exit\n");
-		scanf("%c ", &c);
+		printf("1. Write\n");
+		printf("2. Read\n");
+		printf("3. Exit\n");
+		scanf("%d ", &c);
 		
 		
 		switch(c){
-				case 'a':
+				case 1:
 				{
 					 printf("Enter the string to write into the driver\n");
 					 scanf("%[^\t\n]s ",write_buffer);
@@ -54,7 +54,7 @@ int main(int argc, char **argv){
 					 break;
 				}
 					 
-				case 'b':
+				case 2:
 				{
 					 printf("Reading\n");
 					 read(fdesc,read_buffer,1024);
@@ -62,7 +62,7 @@ int main(int argc, char **argv){
 					 printf("Data = %s\n\n",read_buffer);
 					 break;
 				}
-				case 'c':
+				case 3:
 				{
 					 close(fdesc);
 					 exit(1);
@@ -75,6 +75,5 @@ int main(int argc, char **argv){
 				}
 			}
 		}
-        scanf("%d",&temp);
 		close(fdesc);
 }
