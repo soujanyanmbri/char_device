@@ -1,1 +1,0 @@
-cmd_/home/monkeywings/osthing/char_device/enc_module9.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000  --build-id  -T ./scripts/module-common.lds -o /home/monkeywings/osthing/char_device/enc_module9.ko /home/monkeywings/osthing/char_device/enc_module9.o /home/monkeywings/osthing/char_device/enc_module9.mod.o;  true
