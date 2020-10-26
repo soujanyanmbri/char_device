@@ -1,4 +1,3 @@
-
 #include <linux/module.h>
 #include <linux/version.h>
 #include <linux/kernel.h>
@@ -12,7 +11,7 @@ volatile static int is_open = 0;
 static char message[10024];
 static char dec_message[10024];
 static char enc_message[10024];
-static int mod = 0;
+static int mode = 0;
 
 int num_bytes = 0;
 #define MAJOR_NUM 239
@@ -62,11 +61,12 @@ ssize_t mod9_write(struct file *pfile, const char __user *buffer, size_t length,
 	if (*offset >= num_bytes)
 		return -EINVAL;
 
-	int enc_code;
+	int enc_code, dec_code;
 	// this takes n bytes from kernel space to user space.
 	if (copy_from_user(message, buffer, length))
 		return -EFAULT;
 	int a = 19, b = 5;
+
 	if(mode == 0){
 		for (i = 0; i < length; i++)
 		{
