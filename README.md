@@ -40,7 +40,7 @@ This character device driver can be used to encrypt and decrypt messages using t
 
 ## Compile and run the C program
 
-    gcc userprgm.c && ./a.out <0|1> #Select 0 for encryption, 1 for decryption
+    gcc userpgm.c && ./a.out <0|1> #Select 0 for encryption, 1 for decryption
     
     
     
