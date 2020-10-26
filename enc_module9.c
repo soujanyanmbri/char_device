@@ -110,16 +110,16 @@ ssize_t mod9_write(struct file *pfile, const char __user *buffer, size_t length,
 				if (message[i] != ' ')
 				{
 					dec_code = (((a_inv * ((message[i] + 'A' - b)) % 26)) + 'A');
-					dec_message[i] = enc_code;
+					dec_message[i] = dec_code;
 				}
 				else
-					enc_message[i] = ' ';
+					dec_message[i] = ' ';
 			}
 			else{
 				if (message[i] != ' ')
 				{
 					dec_code = (((a_inv * ((message[i] + 'a' - b)) % 26)) + 'a');
-					dec_message[i] = enc_code;
+					dec_message[i] = dec_code;
 				}
 				else
 					dec_message[i] = ' ';
