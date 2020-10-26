@@ -66,7 +66,7 @@ ssize_t mod9_write(struct file *pfile, const char __user *buffer, size_t length,
 	if (copy_from_user(message, buffer, length))
 		return -EFAULT;
 	int a = 19, b = 5;
-
+	printk(KERN_ALERT "%d", mode);
 	if(mode == 0){
 		for (i = 0; i < length; i++)
 		{

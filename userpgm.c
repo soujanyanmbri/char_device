@@ -5,6 +5,7 @@
 #include<sys/types.h>
 #include<sys/stat.h>
 #include<unistd.h>
+#include<sys/ioctl.h>
 
 #define MAJOR_NUM 239
 
@@ -27,29 +28,29 @@ int main(int argc, char **argv){
 	switch(atoi(argv[1]))
 	{
 		case 0:
-			t = ioctl(fd,IOCTL_DEC,0);
+			t = ioctl(fdesc,IOCTL_DEC,0);
 			break;
 		case 1:
-			t = ioctl(fd,IOCTL_ENC,0);
+			t = ioctl(fdesc,IOCTL_ENC,0);
 			break;
 	}
-
+    int temp;
 	while(1){
-		printf(" Choose:\n ");
-		printf(" a. Write\n ");
-		printf(" b. Read\n");
-		printf(" c. Exit\n");
-		scanf(" %c ", &c );
+		printf("Choose:\n");
+		printf("a. Write\n");
+		printf("b. Read\n");
+		printf("c. Exit\n");
+		scanf("%c ", &c);
 		
 		
 		switch(c){
 				case 'a':
 				{
-					 printf(" Enter the string to write into the driver\n ");
-					 scanf(" %[^\t\n]s ",write_buffer);
-					 printf(" Data Written\n ");
+					 printf("Enter the string to write into the driver\n");
+					 scanf("%[^\t\n]s ",write_buffer);
+					 printf("Data Written\n");
 					 write(fdesc, write_buffer , strlen(write_buffer)+1);
-					 printf(" Done\n ");
+					 printf("Done\n");
 					 break;
 				}
 					 
@@ -74,5 +75,6 @@ int main(int argc, char **argv){
 				}
 			}
 		}
+        scanf("%d",&temp);
 		close(fdesc);
 }
