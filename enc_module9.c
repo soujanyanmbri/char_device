@@ -126,7 +126,12 @@ ssize_t mod9_write(struct file *pfile, const char __user *buffer, size_t length,
 			else{
 				if (message[i] != ' ')
 				{
-					dec_code = (((a_inv *((message[i] + 'a' - b)) % 26)) + 'a') - 2;
+					if (message[i] == 't' || message[i] == 'm'){
+						dec_code = (((a_inv *((message[i] + 'a' - b)) % 26)) + 'a') + 24;
+					}
+					else{
+						dec_code = (((a_inv *((message[i] + 'a' - b)) % 26)) + 'a') - 2;
+					}
 					dec_message[i] = dec_code;
 				}
 				else
