@@ -42,9 +42,14 @@ ssize_t mod9_read(struct file *pfile, char __user *buffer, size_t length, loff_t
 
 	if (*offset >= num_bytes)
 		return 0;
-
-	if(copy_to_user(buffer, enc_message, length))
-		return -EFAULT;
+	if(mode == 0){ 
+		if(copy_to_user(buffer, enc_message, length))
+			return -EFAULT;
+	}
+	else{
+		if(copy_to_user(buffer, dec_message, length))
+			return -EFAULT;
+	}
 	return length;
 }
 
