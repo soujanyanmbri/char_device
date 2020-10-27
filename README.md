@@ -19,7 +19,7 @@ This character device driver can be used to encrypt and decrypt messages using t
 
   Once the module is compiled, certain files will be created. We will inserting the .ko file into the list of modules using the following command
     
-    sudo insmod ./enc_module9.ko
+    sudo insmod ./G1_code.o
    
   Run the following command to make sure the module is loaded
   
@@ -40,7 +40,7 @@ This character device driver can be used to encrypt and decrypt messages using t
 
 ## Compile and run the C program
 
-    gcc userpgm.c && ./a.out <0|1> #Select 0 for encryption, 1 for decryption
+    gcc G1_test.c && ./a.out <0|1> #Select 0 for encryption, 1 for decryption
     
     
     
