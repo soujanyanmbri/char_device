@@ -69,6 +69,8 @@ int main(int argc, char **argv)
         case 3:
         {
             close(fdesc);
+            read_buffer[0] = '\0';
+            write_buffer[0] = '\0';
             exit(1);
             break;
         }

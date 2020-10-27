@@ -12,8 +12,12 @@ static char message[10024];
 static char dec_message[10024];
 static char enc_message[10024];
 static int mode = 0;
-
+static int a = 19;
+static int b = 5;
 int num_bytes = 0;
+static int a_inv, enc_code, dec_code, i, flag;
+
+
 #define MAJOR_NUM 239
 
 #define IOCTL_DEC _IO(MAJOR_NUM, 0)
@@ -36,7 +40,7 @@ int mod9_open(struct inode *pinode, struct file *pfile)
 ssize_t mod9_read(struct file *pfile, char __user *buffer, size_t length, loff_t *offset)
 {
 
-	int bytes_read = 0;
+	//int bytes_read = 0;
 	if (offset == NULL)
 		return -1;
 
@@ -45,10 +49,12 @@ ssize_t mod9_read(struct file *pfile, char __user *buffer, size_t length, loff_t
 	if(mode == 0){ 
 		if(copy_to_user(buffer, enc_message, length))
 			return -EFAULT;
+		
 	}
 	else{
 		if(copy_to_user(buffer, dec_message, length))
 			return -EFAULT;
+		
 	}
 	return length;
 }
@@ -60,17 +66,19 @@ ssize_t mod9_read(struct file *pfile, char __user *buffer, size_t length, loff_t
 
 ssize_t mod9_write(struct file *pfile, const char __user *buffer, size_t length, loff_t *offset)
 {
-	int i = 0;
+	i = 0;
+	enc_message[0] = '\0';
+	dec_message[0] = '\0';
 	if (offset == NULL)
 		return -EINVAL;
 	if (*offset >= num_bytes)
 		return -EINVAL;
 
-	int enc_code, dec_code;
+
 	// this takes n bytes from kernel space to user space.
 	if (copy_from_user(message, buffer, length))
 		return -EFAULT;
-	int a = 19, b = 5;
+	
 	printk(KERN_ALERT "%d", mode);
 	if(mode == 0){
 		enc_message[0] = '\0';
@@ -104,8 +112,8 @@ ssize_t mod9_write(struct file *pfile, const char __user *buffer, size_t length,
 	else
 	{
 		dec_message[0] = '\0';
-		int a_inv = 0;
-		int flag = 0;
+		a_inv = 0;
+		flag = 0;
 		for (i = 0; i < 26; i++)
 		{
 			flag = (a * i) % 26;
