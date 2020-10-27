@@ -11,7 +11,7 @@ This character device driver can be used to encrypt and decrypt messages using t
     sudo make -C /lib/modules/$(uname -r)/build M=$PWD modules
   
   The Makefile will take care of the compilation from there.
-  
+  ( To run or update a task when certain files are updated, the make utility can come in handy. The make utility requires a file, Makefile (or makefile), which defines set of tasks to be executed.)
   
   
  
