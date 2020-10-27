@@ -6,7 +6,7 @@
 #include <linux/uaccess.h>
 #include<linux/ioctl.h>
 
-
+MODULE_LICENSE("GPL");
 volatile static int is_open = 0;
 static char message[10024];
 static char dec_message[10024];
